@@ -7,312 +7,85 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            margin: 0; padding: 0; box-sizing: border-box;
             font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
         }
         body {
             background: #0a0a0a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; padding: 20px;
         }
         .bank-app {
-            width: 100%;
-            max-width: 420px;
-            background: #0e0e0e;
-            border-radius: 40px;
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05);
-            overflow: hidden;
-            flex-direction: column;
-            height: 750px;
-            max-height: 90vh;
-            position: relative;
-            backdrop-filter: blur(10px);
-            display: flex;
+            width: 100%; max-width: 420px; background: #0e0e0e;
+            border-radius: 40px; box-shadow: 0 30px 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.05);
+            overflow: hidden; flex-direction: column; height: 750px; max-height: 90vh;
+            position: relative; backdrop-filter: blur(10px); display: flex;
         }
         .header {
-            padding: 20px 20px 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #f0f0f0;
-            background: #0e0e0e;
-            position: sticky;
-            top: 0;
-            z-index: 10;
+            padding: 20px 20px 10px; display: flex; justify-content: space-between;
+            align-items: center; color: #f0f0f0; background: #0e0e0e;
+            position: sticky; top: 0; z-index: 10;
         }
-        .logo i {
-            font-size: 26px;
-            color: #14b8a6;
-            filter: drop-shadow(0 0 6px #14b8a6);
-        }
+        .logo i { font-size: 26px; color: #14b8a6; filter: drop-shadow(0 0 6px #14b8a6); }
         .logo span {
-            font-weight: 700;
-            font-size: 22px;
-            letter-spacing: -0.5px;
+            font-weight: 700; font-size: 22px; letter-spacing: -0.5px;
             background: linear-gradient(135deg, #f0f0f0, #b0b0b0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .header-icons i {
-            cursor: pointer;
-            margin-left: 16px;
-            color: #aaa;
-            font-size: 20px;
-            transition: 0.2s;
-        }
-        .header-icons i:hover {
-            color: #14b8a6;
-        }
+        .header-icons i { cursor: pointer; margin-left: 16px; color: #aaa; font-size: 20px; transition: 0.2s; }
+        .header-icons i:hover { color: #14b8a6; }
         .content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 0 20px 20px;
-            scrollbar-width: thin;
-            scrollbar-color: #333 #0e0e0e;
+            flex: 1; overflow-y: auto; padding: 0 20px 20px;
+            scrollbar-width: thin; scrollbar-color: #333 #0e0e0e;
         }
         .card {
-            background: linear-gradient(145deg, #1a1a1a, #0c0c0c);
-            border-radius: 20px;
-            padding: 20px;
-            margin: 5px 0 20px;
-            box-shadow: 0 15px 25px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.05);
-            border: 1px solid #222;
-            color: #ddd;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(145deg, #1a1a1a, #0c0c0c); border-radius: 20px;
+            padding: 20px; margin: 5px 0 20px; box-shadow: 0 15px 25px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.05);
+            border: 1px solid #222; color: #ddd; position: relative; overflow: hidden;
         }
         .card::after {
-            content: "";
-            position: absolute;
-            top: -30%;
-            right: -20%;
-            width: 180px;
-            height: 180px;
-            background: radial-gradient(circle, rgba(20,184,166,0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
+            content: ""; position: absolute; top: -30%; right: -20%;
+            width: 180px; height: 180px; background: radial-gradient(circle, rgba(20,184,166,0.15) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none;
         }
-        .card-bank {
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: #14b8a6;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .card-number {
-            font-size: 20px;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            font-weight: 400;
-            word-spacing: 8px;
-        }
+        .card-bank { font-size: 14px; font-weight: 600; letter-spacing: 1px; color: #14b8a6; margin-bottom: 20px; display: flex; justify-content: space-between; }
+        .card-number { font-size: 20px; letter-spacing: 2px; margin-bottom: 15px; font-weight: 400; word-spacing: 8px; }
         .balance-section {
-            background: #111;
-            border-radius: 18px;
-            padding: 18px;
-            margin: 10px 0 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid #222;
+            background: #111; border-radius: 18px; padding: 18px; margin: 10px 0 25px;
+            display: flex; justify-content: space-between; align-items: center; border: 1px solid #222;
         }
-        .balance-amount {
-            font-size: 30px;
-            font-weight: 700;
-            color: #fff;
-        }
-        .balance-currency {
-            font-size: 16px;
-            color: #14b8a6;
-        }
-        .quick-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 10px 0 25px;
-            justify-content: space-around;
-        }
-        .action-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            color: #ccc;
-            font-size: 13px;
-            cursor: pointer;
-        }
+        .balance-amount { font-size: 30px; font-weight: 700; color: #fff; }
+        .balance-currency { font-size: 16px; color: #14b8a6; }
+        .quick-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 25px; justify-content: space-around; }
+        .action-item { display: flex; flex-direction: column; align-items: center; gap: 8px; color: #ccc; font-size: 13px; cursor: pointer; }
         .action-item i {
-            background: #1a1a1a;
-            padding: 14px;
-            border-radius: 20px;
-            font-size: 20px;
-            color: #14b8a6;
-            box-shadow: 0 8px 12px rgba(0,0,0,0.5);
-            transition: 0.2s;
+            background: #1a1a1a; padding: 14px; border-radius: 20px; font-size: 20px; color: #14b8a6;
+            box-shadow: 0 8px 12px rgba(0,0,0,0.5); transition: 0.2s;
         }
-        .action-item:hover i {
-            background: #14b8a6;
-            color: #0a0a0a;
-            transform: translateY(-2px);
-        }
-        .transaction {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 0;
-            border-bottom: 1px solid #1e1e1e;
-        }
-        .transaction-amount.positive {
-            color: #14b8a6;
-        }
-        .transaction-amount.negative {
-            color: #f87171;
-        }
-        .bottom-nav {
-            display: flex;
-            justify-content: space-around;
-            background: #0e0e0e;
-            border-top: 1px solid #1f1f1f;
-            padding: 10px 10px 15px;
-            font-size: 12px;
-        }
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #666;
-            gap: 4px;
-            cursor: pointer;
-        }
-        .nav-item.active {
-            color: #14b8a6;
-            font-weight: 500;
-        }
+        .action-item:hover i { background: #14b8a6; color: #0a0a0a; transform: translateY(-2px); }
+        .transaction { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid #1e1e1e; }
+        .transaction-amount.positive { color: #14b8a6; }
+        .transaction-amount.negative { color: #f87171; }
+        .bottom-nav { display: flex; justify-content: space-around; background: #0e0e0e; border-top: 1px solid #1f1f1f; padding: 10px 10px 15px; font-size: 12px; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: #666; gap: 4px; cursor: pointer; }
+        .nav-item.active { color: #14b8a6; font-weight: 500; }
         .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            backdrop-filter: blur(6px);
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 100; backdrop-filter: blur(6px);
         }
-        .modal-content {
-            background: #151515;
-            width: 90%;
-            max-width: 380px;
-            border-radius: 28px;
-            padding: 25px 20px;
-            border: 1px solid #2a2a2a;
-            color: white;
-        }
-        .modal input, .modal select {
-            width: 100%;
-            padding: 14px;
-            margin: 10px 0;
-            background: #0f0f0f;
-            border: 1px solid #2a2a2a;
-            border-radius: 14px;
-            color: white;
-            font-size: 16px;
-            outline: none;
-        }
-        .modal button {
-            background: #14b8a6;
-            border: none;
-            width: 100%;
-            padding: 14px;
-            border-radius: 14px;
-            font-weight: bold;
-            color: #000;
-            font-size: 16px;
-            margin-top: 5px;
-            cursor: pointer;
-        }
-        .close-modal {
-            text-align: right;
-            color: #aaa;
-            font-size: 22px;
-            cursor: pointer;
-        }
-        .hidden {
-            display: none !important;
-        }
-        .page.hidden {
-            display: none;
-        }
-        .loan-item, .deposit-item, .business-item {
-            background: #1a1a1a;
-            border-radius: 14px;
-            padding: 15px;
-            margin: 10px 0;
-            border: 1px solid #222;
-            color: #ccc;
-        }
-        .clicker-btn {
-            background: #14b8a6;
-            border: none;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            font-size: 40px;
-            color: #000;
-            cursor: pointer;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .minesweeper-board {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 4px;
-            max-width: 280px;
-            margin: 20px auto;
-        }
-        .cell {
-            aspect-ratio: 1;
-            background: #1a1a1a;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 18px;
-            cursor: pointer;
-            color: white;
-            border: 1px solid #333;
-        }
-        .cell.revealed {
-            background: #2a2a2a;
-            border-color: #14b8a6;
-        }
-        .cell.mine {
-            background: #f87171;
-        }
-        .bonus-btn {
-            background: #f59e0b;
-            border: none;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: bold;
-            color: #000;
-            cursor: pointer;
-            width: 100%;
-            margin: 10px 0;
-        }
+        .modal-content { background: #151515; width: 90%; max-width: 380px; border-radius: 28px; padding: 25px 20px; border: 1px solid #2a2a2a; color: white; }
+        .modal input { width: 100%; padding: 14px; margin: 10px 0; background: #0f0f0f; border: 1px solid #2a2a2a; border-radius: 14px; color: white; font-size: 16px; outline: none; }
+        .modal button { background: #14b8a6; border: none; width: 100%; padding: 14px; border-radius: 14px; font-weight: bold; color: #000; font-size: 16px; margin-top: 5px; cursor: pointer; }
+        .close-modal { text-align: right; color: #aaa; font-size: 22px; cursor: pointer; }
+        .hidden { display: none !important; }
+        .page.hidden { display: none; }
+        .loan-item, .deposit-item, .business-item { background: #1a1a1a; border-radius: 14px; padding: 15px; margin: 10px 0; border: 1px solid #222; color: #ccc; }
+        .clicker-btn { background: #14b8a6; border: none; width: 120px; height: 120px; border-radius: 50%; font-size: 40px; color: #000; cursor: pointer; margin: 20px auto; display: flex; align-items: center; justify-content: center; }
+        .minesweeper-board { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; max-width: 280px; margin: 20px auto; }
+        .cell { aspect-ratio: 1; background: #1a1a1a; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; cursor: pointer; color: white; border: 1px solid #333; }
+        .cell.revealed { background: #2a2a2a; border-color: #14b8a6; }
+        .cell.mine { background: #f87171; }
+        .bonus-btn { background: #f59e0b; border: none; padding: 12px; border-radius: 12px; font-weight: bold; color: #000; cursor: pointer; width: 100%; margin: 10px 0; }
     </style>
 </head>
 <body>
@@ -351,14 +124,13 @@
             <div style="color:#aaa;font-weight:600;margin:15px 0 10px;">Последние операции</div>
             <div id="recentTransactions"></div>
         </div>
-        <!-- История -->
+        <!-- Страницы истории, профиля, кредитов, вкладов, бизнеса, кликера, сапера (без изменений) -->
         <div id="historyPage" class="page hidden">
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;color:white;">
                 <i class="fas fa-arrow-left" id="backFromHistory" style="cursor:pointer;"></i><h3>История</h3>
             </div>
             <div id="fullTransactionList"></div>
         </div>
-        <!-- Профиль -->
         <div id="profilePage" class="page hidden">
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:25px;color:white;">
                 <i class="fas fa-arrow-left" id="backFromProfile" style="cursor:pointer;"></i><h3>Профиль</h3>
@@ -368,7 +140,6 @@
                 <p style="color:white;font-weight:600;" id="profileName"></p>
                 <p id="profileEmail"></p>
                 <p style="margin-top:10px;">Карта: <span id="profileCardNumber"></span></p>
-                <!-- Админ-панель -->
                 <div id="adminPanel" style="display:none; margin-top:20px; text-align:left;">
                     <div style="border-top:1px solid #333; padding-top:15px;">
                         <p style="color:#14b8a6; font-weight:bold; margin-bottom:10px;">Админ-панель</p>
@@ -379,7 +150,6 @@
                 </div>
             </div>
         </div>
-        <!-- Кредиты -->
         <div id="loansPage" class="page hidden">
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;color:white;">
                 <i class="fas fa-arrow-left" id="backFromLoans" style="cursor:pointer;"></i><h3>Кредиты</h3>
@@ -388,7 +158,6 @@
             <button id="newLoanBtn" style="background:#14b8a6;border:none;padding:12px;border-radius:12px;width:100%;font-weight:bold;">Взять кредит</button>
             <p style="color:#888;font-size:12px;margin-top:8px;">Макс. сумма: 1 млн ₽, не чаще раза в час</p>
         </div>
-        <!-- Вклады -->
         <div id="depositsPage" class="page hidden">
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;color:white;">
                 <i class="fas fa-arrow-left" id="backFromDeposits" style="cursor:pointer;"></i><h3>Вклады</h3>
@@ -396,7 +165,6 @@
             <div id="depositsList"></div>
             <button id="newDepositBtn" style="background:#14b8a6;border:none;padding:12px;border-radius:12px;width:100%;font-weight:bold;">Открыть вклад</button>
         </div>
-        <!-- Бизнесы -->
         <div id="businessPage" class="page hidden">
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;color:white;">
                 <i class="fas fa-arrow-left" id="backFromBusiness" style="cursor:pointer;"></i><h3>Бизнесы</h3>
@@ -404,7 +172,6 @@
             <div id="businessList"></div>
             <div style="margin-top:15px; font-weight:bold; color:#14b8a6;">Доход в час: <span id="totalBusinessIncome">0</span> ₽</div>
         </div>
-        <!-- Кликер -->
         <div id="clickerPage" class="page hidden">
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;color:white;">
                 <i class="fas fa-arrow-left" id="backFromClicker" style="cursor:pointer;"></i><h3>Кликер</h3>
@@ -416,7 +183,6 @@
                 <button id="upgradeClickerBtn" style="background:#f59e0b;border:none;padding:12px;border-radius:12px;width:100%;margin-top:15px;font-weight:bold;">Улучшить (+1 за клик) — <span id="upgradeCost">5000</span> ₽</button>
             </div>
         </div>
-        <!-- Сапёр -->
         <div id="minesweeperPage" class="page hidden">
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;color:white;">
                 <i class="fas fa-arrow-left" id="backFromMinesweeper" style="cursor:pointer;"></i><h3>Сапёр</h3>
@@ -442,7 +208,7 @@
     </div>
 </div>
 
-<!-- Модалки -->
+<!-- Модалки авторизации, перевода, оплаты, кредита, вклада -->
 <div class="modal" id="authModal" style="display:flex;">
     <div class="modal-content">
         <h3 id="authTitle">Вход в Спербанк</h3>
@@ -476,30 +242,21 @@
 
 <script>
     (() => {
-        const USERS_KEY = 'sperbank_users';
-        const CURRENT_USER_KEY = 'sperbank_current';
-        const APP_VERSION = '2.1';
-        const PROCESS_INTERVAL = 60000; // 1 минута = 1 час игрового времени
-        const MAX_LOAN_AMOUNT = 1000000;
-        const BONUS_AMOUNT = 2500000;
-        const BONUS_COOLDOWN = 12 * 3600000; // 12 часов
-        const LOAN_COOLDOWN = 3600000; // 1 час
+        const SERVER = ''; // автоматически тот же хост/порт
+        const PROCESS_INTERVAL = 60000; // 1 мин = 1 час
+        const MAX_LOAN = 1000000;
+        const BONUS = 2500000;
+        const BONUS_CD = 12 * 3600000;
+        const LOAN_CD = 3600000;
 
-        if (localStorage.getItem('app_version') !== APP_VERSION) {
-            localStorage.removeItem(USERS_KEY);
-            localStorage.setItem('app_version', APP_VERSION);
-        }
-
-        let users = JSON.parse(localStorage.getItem(USERS_KEY) || '{}');
         let currentUser = null;
+        let isLoginMode = true;
         let processingTimer = null;
 
         // DOM элементы
         const authModal = document.getElementById('authModal');
         const mainApp = document.getElementById('mainApp');
         const balanceDisplay = document.getElementById('balanceDisplay');
-        const recentContainer = document.getElementById('recentTransactions');
-        const fullListContainer = document.getElementById('fullTransactionList');
         const cardNumberDisplay = document.getElementById('cardNumberDisplay');
         const profileCardNumber = document.getElementById('profileCardNumber');
         const userDisplayName = document.getElementById('userDisplayName');
@@ -511,23 +268,51 @@
         const depositModal = document.getElementById('depositModal');
         const adminPanel = document.getElementById('adminPanel');
         const adminMoneyAmount = document.getElementById('adminMoneyAmount');
-        const adminGiveMoneyBtn = document.getElementById('adminGiveMoneyBtn');
-        const adminResetBtn = document.getElementById('adminResetBtn');
+        const recentContainer = document.getElementById('recentTransactions');
+        const fullListContainer = document.getElementById('fullTransactionList');
 
-        function saveUsers() { localStorage.setItem(USERS_KEY, JSON.stringify(users)); }
-        function getUserData() { return currentUser ? users[currentUser] : null; }
-        function updateUserData(updates) {
-            if (!currentUser) return;
-            users[currentUser] = { ...users[currentUser], ...updates };
-            saveUsers();
+        // Получение данных пользователя из localStorage
+        function getUserData() {
+            if (!currentUser) return null;
+            const key = `sperbank_data_${currentUser}`;
+            const raw = localStorage.getItem(key);
+            if (raw) {
+                try { return JSON.parse(raw); } catch(e) {}
+            }
+            // Дефолтные значения
+            return {
+                balance: 5000,
+                history: [],
+                cardNumber: generateCardNumber(),
+                loans: [],
+                deposits: [],
+                businesses: [],
+                lastLoanTime: 0,
+                lastBonusTime: 0,
+                clickerLevel: 1,
+                clickerUpgradeCost: 5000
+            };
         }
-        function getBalance() { const d = getUserData(); return d ? d.balance : 0; }
+
+        function saveUserData(data) {
+            if (!currentUser) return;
+            const key = `sperbank_data_${currentUser}`;
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+
+        function updateUserData(updates) {
+            const data = getUserData();
+            Object.assign(data, updates);
+            saveUserData(data);
+        }
+
+        function getBalance() { return getUserData().balance; }
         function setBalance(b) { updateUserData({ balance: b }); }
-        function getHistory() { const d = getUserData(); return d ? d.history || [] : []; }
-        function addTransaction(name, amount, icon = 'fa-exchange-alt') {
-            const h = getHistory();
-            h.unshift({ id: Date.now(), name, date: new Date().toLocaleString('ru-RU'), amount, icon });
-            updateUserData({ history: h });
+        function getHistory() { return getUserData().history; }
+        function addTransaction(name, amount, icon) {
+            const data = getUserData();
+            data.history.unshift({ id: Date.now(), name, date: new Date().toLocaleString('ru-RU'), amount, icon });
+            saveUserData(data);
             renderTransactions();
         }
 
@@ -539,10 +324,9 @@
 
         function updateUI() {
             const data = getUserData();
-            if (!data) return;
             balanceDisplay.innerHTML = `${data.balance.toLocaleString('ru-RU')}<span class="balance-currency">₽</span>`;
-            cardNumberDisplay.textContent = data.cardNumber || '#### #### #### ####';
-            profileCardNumber.textContent = data.cardNumber || '—';
+            cardNumberDisplay.textContent = data.cardNumber;
+            profileCardNumber.textContent = data.cardNumber;
             userDisplayName.textContent = currentUser;
             profileName.textContent = currentUser;
             profileEmail.textContent = currentUser + '@sperbank.ru';
@@ -551,32 +335,24 @@
             renderDeposits();
             renderBusinesses();
             renderClickerInfo();
-            // Показать админ-панель только для admin
-            if (currentUser === 'admin') {
-                adminPanel.style.display = 'block';
-            } else {
-                adminPanel.style.display = 'none';
-            }
+            adminPanel.style.display = (currentUser === 'admin') ? 'block' : 'none';
         }
 
         function renderTransactions() {
             const h = getHistory();
-            const row = tx => {
-                const sign = tx.amount >= 0 ? 'positive' : 'negative';
-                return `<div class="transaction">
-                    <div style="display:flex;align-items:center;gap:10px;">
-                        <i class="fas ${tx.icon}" style="color:#14b8a6;width:24px;"></i>
-                        <div><div style="color:#e0e0e0;">${tx.name}</div><div style="font-size:12px;color:#666;">${tx.date}</div></div>
-                    </div>
-                    <div class="transaction-amount ${sign}">${tx.amount >= 0 ? '+' : ''}${Math.abs(tx.amount).toLocaleString('ru-RU')} ₽</div>
-                </div>`;
-            };
-            if (recentContainer) recentContainer.innerHTML = h.slice(0, 3).map(row).join('');
+            const row = tx => `<div class="transaction">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <i class="fas ${tx.icon}" style="color:#14b8a6;width:24px;"></i>
+                    <div><div style="color:#e0e0e0;">${tx.name}</div><div style="font-size:12px;color:#666;">${tx.date}</div></div>
+                </div>
+                <div class="transaction-amount ${tx.amount>=0?'positive':'negative'}">${tx.amount>=0?'+':''}${Math.abs(tx.amount).toLocaleString('ru-RU')} ₽</div>
+            </div>`;
+            if (recentContainer) recentContainer.innerHTML = h.slice(0,3).map(row).join('');
             if (fullListContainer) fullListContainer.innerHTML = h.map(row).join('');
         }
 
-        // Кредиты
-        function getLoans() { const d = getUserData(); return d ? d.loans || [] : []; }
+        // Кредиты, вклады, бизнесы, кликер, сапёр – идентичны предыдущей версии, только используют getUserData/saveUserData
+        function getLoans() { return getUserData().loans; }
         function renderLoans() {
             const list = document.getElementById('loansList');
             if (!list) return;
@@ -589,23 +365,22 @@
                     <button class="repayLoanBtn" data-id="${l.id}" style="background:#14b8a6;border:none;padding:10px;border-radius:10px;width:100%;margin-top:8px;color:#000;font-weight:bold;">Погасить досрочно</button>
                 </div>
             `).join('') || '<p style="color:#aaa;">Нет активных кредитов</p>';
-            document.querySelectorAll('.repayLoanBtn').forEach(btn => btn.onclick = () => repayLoan(parseInt(btn.dataset.id)));
+            document.querySelectorAll('.repayLoanBtn').forEach(b => b.onclick = () => repayLoan(parseInt(b.dataset.id)));
         }
         function repayLoan(id) {
-            const loans = getLoans();
-            const idx = loans.findIndex(l => l.id === id);
+            const data = getUserData();
+            const idx = data.loans.findIndex(l => l.id === id);
             if (idx === -1) return;
-            const loan = loans[idx];
-            if (getBalance() < loan.amount) return alert('Недостаточно средств для полного погашения');
-            setBalance(getBalance() - loan.amount);
-            loans.splice(idx, 1);
-            updateUserData({ loans });
+            const loan = data.loans[idx];
+            if (getBalance() < loan.amount) return alert('Недостаточно средств');
+            data.balance -= loan.amount;
+            data.loans.splice(idx, 1);
+            saveUserData(data);
             addTransaction('Досрочное погашение кредита', -loan.amount, 'fa-hand-holding-usd');
             updateUI();
         }
 
-        // Вклады
-        function getDeposits() { const d = getUserData(); return d ? d.deposits || [] : []; }
+        function getDeposits() { return getUserData().deposits; }
         function renderDeposits() {
             const list = document.getElementById('depositsList');
             if (!list) return;
@@ -618,31 +393,29 @@
                     <button class="closeDepositBtn" data-id="${d.id}" style="background:#f59e0b;border:none;padding:10px;border-radius:10px;width:100%;margin-top:8px;color:#000;font-weight:bold;">Закрыть вклад</button>
                 </div>
             `).join('') || '<p style="color:#aaa;">Нет открытых вкладов</p>';
-            document.querySelectorAll('.closeDepositBtn').forEach(btn => btn.onclick = () => closeDeposit(parseInt(btn.dataset.id)));
+            document.querySelectorAll('.closeDepositBtn').forEach(b => b.onclick = () => closeDeposit(parseInt(b.dataset.id)));
         }
         function closeDeposit(id) {
-            const deps = getDeposits();
-            const idx = deps.findIndex(d => d.id === id);
+            const data = getUserData();
+            const idx = data.deposits.findIndex(d => d.id === id);
             if (idx === -1) return;
-            const dep = deps[idx];
+            const dep = data.deposits[idx];
             const hoursElapsed = dep.totalHours - dep.remainingHours;
-            const hourlyRate = 0.08 / (365 * 24);
-            const profit = Math.round(dep.amount * hourlyRate * hoursElapsed);
+            const profit = Math.round(dep.amount * (0.08 / (365*24)) * hoursElapsed);
             const total = dep.amount + profit;
-            setBalance(getBalance() + total);
-            deps.splice(idx, 1);
-            updateUserData({ deposits: deps });
+            data.balance += total;
+            data.deposits.splice(idx, 1);
+            saveUserData(data);
             addTransaction('Закрытие вклада', total, 'fa-piggy-bank');
             updateUI();
         }
 
-        // Бизнесы
         const availableBusinesses = [
             { id: 'coffee', name: 'Кофейня', cost: 50000, incomePerHour: 2000 },
             { id: 'shop', name: 'Магазин', cost: 150000, incomePerHour: 7000 },
             { id: 'factory', name: 'Завод', cost: 500000, incomePerHour: 25000 }
         ];
-        function getBusinesses() { const d = getUserData(); return d ? d.businesses || [] : []; }
+        function getBusinesses() { return getUserData().businesses; }
         function renderBusinesses() {
             const list = document.getElementById('businessList');
             const totalEl = document.getElementById('totalBusinessIncome');
@@ -657,122 +430,57 @@
                         <div style="color:white;">${b.name}</div>
                         <div style="font-size:12px;color:#888;">Доход: ${b.incomePerHour.toLocaleString('ru-RU')} ₽/ч</div>
                     </div>
-                    ${isOwned
-                        ? '<span style="color:#14b8a6;">Куплено</span>'
-                        : `<button class="buyBusinessBtn" data-id="${b.id}" style="background:#14b8a6;border:none;padding:8px 12px;border-radius:8px;">Купить за ${b.cost.toLocaleString('ru-RU')} ₽</button>`
-                    }
+                    ${isOwned ? '<span style="color:#14b8a6;">Куплено</span>' : `<button class="buyBusinessBtn" data-id="${b.id}" style="background:#14b8a6;border:none;padding:8px 12px;border-radius:8px;">Купить за ${b.cost.toLocaleString('ru-RU')} ₽</button>`}
                 </div>`;
             }).join('');
             totalEl.textContent = totalIncome.toLocaleString('ru-RU');
-            document.querySelectorAll('.buyBusinessBtn').forEach(btn => {
-                btn.onclick = () => buyBusiness(btn.dataset.id);
-            });
+            document.querySelectorAll('.buyBusinessBtn').forEach(b => b.onclick = () => buyBusiness(b.dataset.id));
         }
-        function buyBusiness(businessId) {
-            const b = availableBusinesses.find(b => b.id === businessId);
+        function buyBusiness(id) {
+            const b = availableBusinesses.find(b => b.id === id);
             if (!b) return;
-            const owned = getBusinesses();
-            if (owned.some(o => o.id === businessId)) return alert('Уже куплено');
-            if (getBalance() < b.cost) return alert('Недостаточно средств');
-            setBalance(getBalance() - b.cost);
-            owned.push({ id: b.id });
-            updateUserData({ businesses: owned });
+            const data = getUserData();
+            if (data.businesses.some(o => o.id === id)) return alert('Уже куплено');
+            if (data.balance < b.cost) return alert('Недостаточно средств');
+            data.balance -= b.cost;
+            data.businesses.push({ id });
+            saveUserData(data);
             addTransaction(`Покупка бизнеса: ${b.name}`, -b.cost, 'fa-building');
             updateUI();
         }
 
-        // Кликер
-        function getClickerLevel() { const d = getUserData(); return d ? d.clickerLevel || 1 : 1; }
-        function getClickerUpgradeCost() { const d = getUserData(); return d ? d.clickerUpgradeCost || 5000 : 5000; }
+        function getClickerLevel() { return getUserData().clickerLevel; }
+        function getClickerUpgradeCost() { return getUserData().clickerUpgradeCost; }
         function renderClickerInfo() {
-            const powerEl = document.getElementById('clickerPower');
-            const costEl = document.getElementById('upgradeCost');
-            if (powerEl) powerEl.textContent = getClickerLevel();
-            if (costEl) costEl.textContent = getClickerUpgradeCost().toLocaleString('ru-RU');
+            document.getElementById('clickerPower').textContent = getClickerLevel();
+            document.getElementById('upgradeCost').textContent = getClickerUpgradeCost().toLocaleString('ru-RU');
         }
 
-        function showPage(page) {
-            ['homePage','historyPage','profilePage','loansPage','depositsPage','businessPage','clickerPage','minesweeperPage'].forEach(id => document.getElementById(id).classList.add('hidden'));
-            const map = { home:'homePage', history:'historyPage', profile:'profilePage', loans:'loansPage', deposits:'depositsPage', business:'businessPage', clicker:'clickerPage', minesweeper:'minesweeperPage' };
-            if (map[page]) document.getElementById(map[page]).classList.remove('hidden');
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.page === page));
-            if (page === 'history') renderTransactions();
-            if (page === 'loans') renderLoans();
-            if (page === 'deposits') renderDeposits();
-            if (page === 'business') renderBusinesses();
-            if (page === 'clicker') renderClickerInfo();
-        }
-
-        function processLoansAndDepositsAndBusinesses() {
-            if (!currentUser) return;
-            const data = getUserData();
-            if (!data) return;
-            let changed = false;
-            const loans = data.loans || [];
-            for (let i = loans.length - 1; i >= 0; i--) {
-                const loan = loans[i];
-                if (loan.remainingHours > 0) {
-                    if (getBalance() < loan.hourlyPayment) continue;
-                    setBalance(getBalance() - loan.hourlyPayment);
-                    loan.remainingHours--;
-                    addTransaction(`Платёж по кредиту #${loan.id}`, -loan.hourlyPayment, 'fa-hand-holding-usd');
-                    changed = true;
-                    if (loan.remainingHours <= 0) {
-                        loans.splice(i, 1);
-                        addTransaction('Кредит полностью погашен', 0, 'fa-check-circle');
-                    }
-                }
-            }
-            const deposits = data.deposits || [];
-            for (let i = deposits.length - 1; i >= 0; i--) {
-                const dep = deposits[i];
-                if (dep.remainingHours > 0) {
-                    const hourlyRate = 0.08 / (365 * 24);
-                    const interest = Math.round(dep.amount * hourlyRate);
-                    if (interest > 0) {
-                        setBalance(getBalance() + interest);
-                        addTransaction(`Проценты по вкладу #${dep.id}`, interest, 'fa-piggy-bank');
-                        changed = true;
-                    }
-                    dep.remainingHours--;
-                    if (dep.remainingHours <= 0) {
-                        setBalance(getBalance() + dep.amount);
-                        deposits.splice(i, 1);
-                        addTransaction('Вклад закрыт (возврат)', dep.amount, 'fa-piggy-bank');
-                        changed = true;
-                    }
-                }
-            }
-            const businesses = data.businesses || [];
-            if (businesses.length > 0) {
-                let totalIncome = 0;
-                businesses.forEach(owned => {
-                    const template = availableBusinesses.find(b => b.id === owned.id);
-                    if (template) totalIncome += Math.floor(template.incomePerHour / 60);
+        // Аутентификация через сервер
+        async function serverRequest(url, body) {
+            try {
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
                 });
-                if (totalIncome > 0) {
-                    setBalance(getBalance() + totalIncome);
-                    addTransaction('Доход от бизнесов', totalIncome, 'fa-building');
-                    changed = true;
-                }
-            }
-            if (changed) {
-                updateUserData({ loans, deposits });
-                updateUI();
+                return await res.json();
+            } catch (e) {
+                return { error: 'Сервер недоступен' };
             }
         }
 
-        function startProcessingTimer() {
-            if (processingTimer) clearInterval(processingTimer);
-            processingTimer = setInterval(processLoansAndDepositsAndBusinesses, PROCESS_INTERVAL);
-        }
-
-        function loginUser(username) {
-            currentUser = username;
-            sessionStorage.setItem(CURRENT_USER_KEY, username);
-            if (!users[username]) {
-                users[username] = {
-                    password: '',
+        async function handleAuth() {
+            const login = document.getElementById('authLogin').value.trim();
+            const pass = document.getElementById('authPassword').value.trim();
+            if (!login || !pass) return alert('Заполните все поля');
+            const url = isLoginMode ? '/api/login' : '/api/register';
+            const data = await serverRequest(url, { login, password: pass });
+            if (data.error) return alert(data.error);
+            // Успех
+            if (!isLoginMode) {
+                // После регистрации сразу создаём локальные данные
+                localStorage.setItem(`sperbank_data_${login}`, JSON.stringify({
                     balance: 5000,
                     history: [],
                     cardNumber: generateCardNumber(),
@@ -783,17 +491,11 @@
                     lastBonusTime: 0,
                     clickerLevel: 1,
                     clickerUpgradeCost: 5000
-                };
+                }));
             }
-            const u = users[username];
-            u.loans = u.loans || [];
-            u.deposits = u.deposits || [];
-            u.businesses = u.businesses || [];
-            u.lastLoanTime = u.lastLoanTime || 0;
-            u.lastBonusTime = u.lastBonusTime || 0;
-            u.clickerLevel = u.clickerLevel || 1;
-            u.clickerUpgradeCost = u.clickerUpgradeCost || 5000;
-            saveUsers();
+            // Входим
+            currentUser = login;
+            sessionStorage.setItem('sperbank_current', login);
             authModal.style.display = 'none';
             mainApp.style.display = 'flex';
             updateUI();
@@ -801,84 +503,58 @@
             startProcessingTimer();
         }
 
-        function logout() {
+        document.getElementById('authActionBtn').addEventListener('click', handleAuth);
+        document.getElementById('toggleAuthMode').addEventListener('click', () => {
+            isLoginMode = !isLoginMode;
+            document.getElementById('authTitle').textContent = isLoginMode ? 'Вход в Спербанк' : 'Регистрация';
+            document.getElementById('authActionBtn').textContent = isLoginMode ? 'Войти' : 'Зарегистрироваться';
+            document.getElementById('toggleAuthMode').textContent = isLoginMode ? 'Нет аккаунта? Зарегистрироваться' : 'Уже есть аккаунт? Войти';
+        });
+
+        // Выход
+        document.getElementById('logoutBtn').addEventListener('click', () => {
             currentUser = null;
-            sessionStorage.removeItem(CURRENT_USER_KEY);
+            sessionStorage.removeItem('sperbank_current');
             if (processingTimer) { clearInterval(processingTimer); processingTimer = null; }
             mainApp.style.display = 'none';
             authModal.style.display = 'flex';
-        }
-
-        // Авторизация
-        document.getElementById('authActionBtn').addEventListener('click', () => {
-            const login = document.getElementById('authLogin').value.trim();
-            const pass = document.getElementById('authPassword').value.trim();
-            if (!login || !pass) return alert('Заполните все поля');
-            const isLogin = document.getElementById('authTitle').textContent.includes('Вход');
-            if (isLogin) {
-                if (users[login] && users[login].password === pass) loginUser(login);
-                else alert('Неверный логин или пароль');
-            } else {
-                if (users[login]) alert('Пользователь уже существует');
-                else {
-                    users[login] = { password: pass, balance: 5000, history: [], cardNumber: generateCardNumber(), loans: [], deposits: [], businesses: [], lastLoanTime: 0, lastBonusTime: 0, clickerLevel: 1, clickerUpgradeCost: 5000 };
-                    saveUsers();
-                    alert('Регистрация успешна');
-                    loginUser(login);
-                }
-            }
         });
-        document.getElementById('toggleAuthMode').addEventListener('click', () => {
-            const title = document.getElementById('authTitle');
-            const btn = document.getElementById('authActionBtn');
-            const toggle = document.getElementById('toggleAuthMode');
-            if (title.textContent.includes('Вход')) {
-                title.textContent = 'Регистрация';
-                btn.textContent = 'Зарегистрироваться';
-                toggle.textContent = 'Уже есть аккаунт? Войти';
-            } else {
-                title.textContent = 'Вход в Спербанк';
-                btn.textContent = 'Войти';
-                toggle.textContent = 'Нет аккаунта? Зарегистрироваться';
-            }
-        });
-        document.getElementById('logoutBtn').addEventListener('click', logout);
 
-        // Админ: выдать деньги себе
-        adminGiveMoneyBtn.addEventListener('click', () => {
+        // Админские кнопки
+        document.getElementById('adminGiveMoneyBtn').addEventListener('click', () => {
             if (currentUser !== 'admin') return;
             const amount = parseFloat(adminMoneyAmount.value);
-            if (isNaN(amount) || amount <= 0) return alert('Введите корректную сумму');
+            if (isNaN(amount) || amount <= 0) return alert('Введите сумму');
             setBalance(getBalance() + amount);
             addTransaction('Выдача денег (админ)', amount, 'fa-coins');
             adminMoneyAmount.value = '';
             updateUI();
         });
-
-        // Админ: сброс всех данных
-        adminResetBtn.addEventListener('click', () => {
+        document.getElementById('adminResetBtn').addEventListener('click', () => {
             if (currentUser !== 'admin') return;
-            if (confirm('Сбросить ВСЕ данные пользователей?')) {
-                localStorage.removeItem(USERS_KEY);
-                users = {};
-                saveUsers();
-                alert('Данные сброшены. Перезайдите.');
-                logout();
+            if (confirm('Сбросить ВСЕ данные всех пользователей (локальные)?')) {
+                // Удаляем все ключи с данными
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key.startsWith('sperbank_data_')) localStorage.removeItem(key);
+                }
+                alert('Данные сброшены');
+                updateUI();
             }
         });
 
         // Бонус
         document.getElementById('claimBonusBtn').addEventListener('click', () => {
             const data = getUserData();
-            if (!data) return;
             const now = Date.now();
-            if (now - data.lastBonusTime < BONUS_COOLDOWN) {
-                const remain = Math.ceil((BONUS_COOLDOWN - (now - data.lastBonusTime)) / 3600000);
+            if (now - data.lastBonusTime < BONUS_CD) {
+                const remain = Math.ceil((BONUS_CD - (now - data.lastBonusTime)) / 3600000);
                 return alert(`Бонус доступен раз в 12 часов. Осталось примерно ${remain} ч.`);
             }
-            setBalance(getBalance() + BONUS_AMOUNT);
-            updateUserData({ lastBonusTime: now });
-            addTransaction('Бонус 2.5 млн', BONUS_AMOUNT, 'fa-gift');
+            data.balance += BONUS;
+            data.lastBonusTime = now;
+            saveUserData(data);
+            addTransaction('Бонус 2.5 млн', BONUS, 'fa-gift');
             updateUI();
         });
 
@@ -886,18 +562,29 @@
         document.getElementById('executeTransfer').addEventListener('click', () => {
             const target = document.getElementById('transferTarget').value.trim();
             const amount = parseFloat(document.getElementById('transferAmount').value);
-            if (!target || isNaN(amount) || amount <= 0) return alert('Введите корректные данные');
+            if (!target || isNaN(amount) || amount <= 0) return alert('Введите данные');
             if (amount > getBalance()) return alert('Недостаточно средств');
-            const recipient = users[target] ? target : null;
-            if (recipient) {
-                setBalance(getBalance() - amount);
-                users[recipient].balance += amount;
-                if (!users[recipient].history) users[recipient].history = [];
-                users[recipient].history.unshift({ id: Date.now(), name: `Перевод от ${currentUser}`, date: new Date().toLocaleString('ru-RU'), amount, icon: 'fa-arrow-down' });
-                saveUsers();
+            // Проверка существования получателя (только для внутренних переводов)
+            const recipientKey = `sperbank_data_${target}`;
+            if (localStorage.getItem(recipientKey)) {
+                // Внутренний перевод
+                const senderData = getUserData();
+                senderData.balance -= amount;
+                saveUserData(senderData);
+                const recipData = JSON.parse(localStorage.getItem(recipientKey));
+                recipData.balance += amount;
+                recipData.history.unshift({
+                    id: Date.now(),
+                    name: `Перевод от ${currentUser}`,
+                    date: new Date().toLocaleString('ru-RU'),
+                    amount,
+                    icon: 'fa-arrow-down'
+                });
+                localStorage.setItem(recipientKey, JSON.stringify(recipData));
                 addTransaction(`Перевод на ${target}`, -amount, 'fa-paper-plane');
-                alert('Перевод выполнен.');
+                alert('Перевод выполнен');
             } else {
+                // Внешний перевод
                 setBalance(getBalance() - amount);
                 addTransaction(`Перевод на ${target} (внешний)`, -amount, 'fa-paper-plane');
             }
@@ -924,22 +611,16 @@
         // Кредит
         document.getElementById('executeLoan').addEventListener('click', () => {
             const amount = parseFloat(document.getElementById('loanAmount').value);
-            const termHours = parseInt(document.getElementById('loanTerm').value);
-            if (!amount || !termHours || amount <= 0 || termHours <= 0) return alert('Введите корректные данные');
-            if (amount > MAX_LOAN_AMOUNT) return alert('Максимальная сумма кредита 1 000 000 ₽');
+            const term = parseInt(document.getElementById('loanTerm').value);
+            if (!amount || !term || amount <= 0 || term <= 0) return alert('Введите данные');
+            if (amount > MAX_LOAN) return alert('Максимум 1 000 000 ₽');
             const data = getUserData();
-            const now = Date.now();
-            if (now - data.lastLoanTime < LOAN_COOLDOWN) {
-                const remain = Math.ceil((LOAN_COOLDOWN - (now - data.lastLoanTime)) / 60000);
-                return alert(`Кредит можно брать раз в час. Осталось примерно ${remain} мин.`);
-            }
-            const rate = 0.15;
-            const total = amount * (1 + rate * termHours / (365 * 24));
-            const hourly = Math.round(total / termHours);
-            const loans = getLoans();
-            loans.push({ id: Date.now(), amount, remainingHours: termHours, hourlyPayment: hourly });
-            updateUserData({ loans, lastLoanTime: now });
-            setBalance(getBalance() + amount);
+            if (Date.now() - data.lastLoanTime < LOAN_CD) return alert('Кредит раз в час');
+            const hourly = Math.round(amount * (1 + 0.15 * term/(365*24)) / term);
+            data.loans.push({ id: Date.now(), amount, remainingHours: term, hourlyPayment: hourly });
+            data.balance += amount;
+            data.lastLoanTime = Date.now();
+            saveUserData(data);
             addTransaction('Получен кредит', amount, 'fa-hand-holding-usd');
             loanModal.style.display = 'none';
             document.getElementById('loanAmount').value = '';
@@ -950,13 +631,13 @@
         // Вклад
         document.getElementById('executeDeposit').addEventListener('click', () => {
             const amount = parseFloat(document.getElementById('depositAmount').value);
-            const termHours = parseInt(document.getElementById('depositTerm').value);
-            if (!amount || !termHours || amount <= 0 || termHours <= 0) return alert('Введите корректные данные');
+            const term = parseInt(document.getElementById('depositTerm').value);
+            if (!amount || !term || amount <= 0 || term <= 0) return alert('Введите данные');
             if (amount > getBalance()) return alert('Недостаточно средств');
             setBalance(getBalance() - amount);
-            const deps = getDeposits();
-            deps.push({ id: Date.now(), amount, remainingHours: termHours, totalHours: termHours });
-            updateUserData({ deposits: deps });
+            const data = getUserData();
+            data.deposits.push({ id: Date.now(), amount, remainingHours: term, totalHours: term });
+            saveUserData(data);
             addTransaction('Открыт вклад', -amount, 'fa-piggy-bank');
             depositModal.style.display = 'none';
             document.getElementById('depositAmount').value = '';
@@ -964,7 +645,7 @@
             updateUI();
         });
 
-        // Кликер
+        // Кликер и сапёр без изменений
         document.getElementById('clickerBtn').addEventListener('click', () => {
             const level = getClickerLevel();
             setBalance(getBalance() + level);
@@ -977,26 +658,25 @@
             const cost = getClickerUpgradeCost();
             if (getBalance() < cost) return alert('Недостаточно средств');
             setBalance(getBalance() - cost);
-            const newLevel = getClickerLevel() + 1;
-            const newCost = Math.floor(cost * 1.5);
-            updateUserData({ clickerLevel: newLevel, clickerUpgradeCost: newCost });
+            const data = getUserData();
+            data.clickerLevel++;
+            data.clickerUpgradeCost = Math.floor(cost * 1.5);
+            saveUserData(data);
             addTransaction('Улучшение кликера', -cost, 'fa-arrow-up');
             renderClickerInfo();
             updateUI();
         });
 
-        // Сапёр
         let game = null, safeOpened = 0;
-        const MULT = 0.3;
         function newGame() {
             const bet = parseInt(document.getElementById('betAmount').value);
-            if (isNaN(bet) || bet < 10) return alert('Минимальная ставка 10 ₽');
+            if (isNaN(bet) || bet < 10) return alert('Мин. ставка 10 ₽');
             if (bet > getBalance()) return alert('Недостаточно средств');
             const board = Array(25).fill(0);
-            let placed = 0;
-            while (placed < 3) {
-                const idx = Math.floor(Math.random() * 25);
-                if (board[idx] === 0) { board[idx] = 'mine'; placed++; }
+            for (let i = 0; i < 3; i++) {
+                let idx;
+                do { idx = Math.floor(Math.random() * 25); } while (board[idx] === 'mine');
+                board[idx] = 'mine';
             }
             game = { board, bet, revealed: new Set(), over: false };
             safeOpened = 0;
@@ -1031,7 +711,7 @@
                 updateUI(); renderBoard(); return;
             }
             safeOpened++;
-            const win = Math.floor(game.bet * (1 + safeOpened * MULT));
+            const win = Math.floor(game.bet * (1 + safeOpened * 0.3));
             document.getElementById('potentialWin').textContent = win;
             document.getElementById('cashoutBtn').style.display = 'inline-block';
             if (safeOpened === 22) {
@@ -1046,7 +726,7 @@
         document.getElementById('newGameBtn').addEventListener('click', newGame);
         document.getElementById('cashoutBtn').addEventListener('click', () => {
             if (!game || game.over) return;
-            const win = Math.floor(game.bet * (1 + safeOpened * MULT));
+            const win = Math.floor(game.bet * (1 + safeOpened * 0.3));
             setBalance(getBalance() + win);
             addTransaction('Сапёр (выигрыш)', win, 'fa-trophy');
             game.over = true;
@@ -1055,11 +735,78 @@
             updateUI(); renderBoard();
         });
 
+        // Обработка кредитов, вкладов, бизнесов каждый час
+        function processFinancials() {
+            if (!currentUser) return;
+            const data = getUserData();
+            let changed = false;
+            // Кредиты
+            for (let i = data.loans.length - 1; i >= 0; i--) {
+                const loan = data.loans[i];
+                if (loan.remainingHours > 0 && data.balance >= loan.hourlyPayment) {
+                    data.balance -= loan.hourlyPayment;
+                    loan.remainingHours--;
+                    data.history.unshift({ id: Date.now(), name: `Платёж по кредиту #${loan.id}`, date: new Date().toLocaleString('ru-RU'), amount: -loan.hourlyPayment, icon: 'fa-hand-holding-usd' });
+                    changed = true;
+                    if (loan.remainingHours <= 0) {
+                        data.loans.splice(i, 1);
+                        data.history.unshift({ id: Date.now(), name: 'Кредит погашен', date: new Date().toLocaleString('ru-RU'), amount: 0, icon: 'fa-check-circle' });
+                    }
+                }
+            }
+            // Вклады
+            for (let i = data.deposits.length - 1; i >= 0; i--) {
+                const dep = data.deposits[i];
+                if (dep.remainingHours > 0) {
+                    const interest = Math.round(dep.amount * (0.08 / (365*24)));
+                    if (interest > 0) {
+                        data.balance += interest;
+                        data.history.unshift({ id: Date.now(), name: `Проценты по вкладу #${dep.id}`, date: new Date().toLocaleString('ru-RU'), amount: interest, icon: 'fa-piggy-bank' });
+                        changed = true;
+                    }
+                    dep.remainingHours--;
+                    if (dep.remainingHours <= 0) {
+                        data.balance += dep.amount;
+                        data.deposits.splice(i, 1);
+                        data.history.unshift({ id: Date.now(), name: 'Вклад закрыт', date: new Date().toLocaleString('ru-RU'), amount: dep.amount, icon: 'fa-piggy-bank' });
+                        changed = true;
+                    }
+                }
+            }
+            // Бизнесы
+            let bizIncome = 0;
+            data.businesses.forEach(owned => {
+                const tpl = availableBusinesses.find(b => b.id === owned.id);
+                if (tpl) bizIncome += Math.floor(tpl.incomePerHour / 60); // за минуту
+            });
+            if (bizIncome > 0) {
+                data.balance += bizIncome;
+                data.history.unshift({ id: Date.now(), name: 'Доход от бизнесов', date: new Date().toLocaleString('ru-RU'), amount: bizIncome, icon: 'fa-building' });
+                changed = true;
+            }
+            if (changed) {
+                saveUserData(data);
+                updateUI();
+            }
+        }
+        function startProcessingTimer() {
+            if (processingTimer) clearInterval(processingTimer);
+            processingTimer = setInterval(processFinancials, PROCESS_INTERVAL);
+        }
+
         // Навигация
+        function showPage(page) {
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            document.getElementById(page + 'Page')?.classList.remove('hidden');
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.page === page));
+            if (page === 'history') renderTransactions();
+            if (page === 'loans') renderLoans();
+            if (page === 'deposits') renderDeposits();
+            if (page === 'business') renderBusinesses();
+        }
         document.querySelectorAll('.nav-item').forEach(item => item.addEventListener('click', function() {
-            const page = this.dataset.page;
-            if (page === 'transfers') { transferModal.style.display = 'flex'; showPage('home'); }
-            else showPage(page);
+            if (this.dataset.page === 'transfers') { transferModal.style.display = 'flex'; showPage('home'); }
+            else showPage(this.dataset.page);
         }));
         document.getElementById('openTransferModal').addEventListener('click', () => transferModal.style.display = 'flex');
         document.getElementById('openPaymentModal').addEventListener('click', () => paymentModal.style.display = 'flex');
@@ -1072,10 +819,7 @@
         document.getElementById('closePaymentModal').addEventListener('click', () => paymentModal.style.display = 'none');
         document.getElementById('closeLoanModal').addEventListener('click', () => loanModal.style.display = 'none');
         document.getElementById('closeDepositModal').addEventListener('click', () => depositModal.style.display = 'none');
-        document.getElementById('showAllHistory')?.addEventListener('click', () => showPage('history'));
-        document.getElementById('openHistoryTab')?.addEventListener('click', () => showPage('history'));
-        document.getElementById('openProfileTab')?.addEventListener('click', () => showPage('profile'));
-        document.getElementById('profileIcon')?.addEventListener('click', () => showPage('profile'));
+        document.getElementById('profileIcon').addEventListener('click', () => showPage('profile'));
         ['backFromHistory','backFromProfile','backFromLoans','backFromDeposits','backFromBusiness','backFromClicker','backFromMinesweeper'].forEach(id => {
             document.getElementById(id)?.addEventListener('click', () => showPage('home'));
         });
@@ -1087,9 +831,17 @@
             if (e.target === depositModal) depositModal.style.display = 'none';
         });
 
-        const saved = sessionStorage.getItem(CURRENT_USER_KEY);
-        if (saved && users[saved]) loginUser(saved);
-        else authModal.style.display = 'flex';
+        // Автовход
+        const saved = sessionStorage.getItem('sperbank_current');
+        if (saved && localStorage.getItem(`sperbank_data_${saved}`)) {
+            currentUser = saved;
+            authModal.style.display = 'none';
+            mainApp.style.display = 'flex';
+            updateUI();
+            startProcessingTimer();
+        } else {
+            authModal.style.display = 'flex';
+        }
     })();
 </script>
 </body>
